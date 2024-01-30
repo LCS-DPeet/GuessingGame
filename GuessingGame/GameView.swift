@@ -50,7 +50,7 @@ struct GameView: View {
                 }
                 
                 Button {
-                    checkGuess()
+                    checkGuess(guess: selectedNumber)
                 } label: {
                     Text("Submit Guess")
                 }
@@ -98,15 +98,23 @@ struct GameView: View {
     }
     
     // MARK: Functions
-    func checkGuess() {
+    func checkGuess(guess: Int) {
         
         // Provide feedback to the user
         // When should they guess higher?
         // When should then guess lower?
         // FILL IN THIS CODE
         
+        if guess < target {
+           feedback = "Go Higher"
+        } else if guess > target {
+            feedback = "Go Lower"
+        } else {
+           feedback = "Huzzah!!!"
+        }
+        
         // Save the user's guesses
-        guessesMade.append(selectedNumber)
+        guessesMade.insert(guess, at: 0)
         
     }
 
@@ -126,6 +134,7 @@ struct GameView: View {
         guessesMade.removeAll()
         
     }
+    
 
 }
 
